@@ -1,0 +1,15 @@
+<div class="wrapper productosHeader">
+  <div class="productosHeader__list">
+    {% for sublink in site.data.navegacion.site-header[1].submenu %}
+      {% assign sublink_url = site.url | append: sublink.url %}
+        <a href="{{ sublink_url }}" class="productosHeader__listItem{% if sublink.url == page.url %} activo{% endif %}">
+          <div class="productosHeader__listItem__icon">
+              {% include partes/icono.svg icon=sublink.icon title=sublink.title %}
+          </div>
+          <div class="productosHeader__listItem__nombre">
+              {{ sublink.title }}
+          </div>
+        </a>
+    {% endfor %}
+  </div>
+</div>

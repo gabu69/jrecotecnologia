@@ -9,9 +9,19 @@ layout: compress
   {% assign body_class = page.bodyClass %}
 {% endif %}
 
+{% comment %}
+{% if page.namespace %}
+  {% assign dataNamespace = page.namespace | append: 'Page' %}
+{% else %}
+  {% assign dataNamespace = 'DefaultPage' %}
+{% endif %}
+<main id="barba-wrapper" class="page-content">
+  <div class="barba-container" data-namespace="{{ dataNamespace }}" data-title="{{ seo_title }}">
+{% endcomment %}
+
 <!DOCTYPE html>
 <html lang="{{ site.locale }}">
-
+ 
   {% include head.html %}
 
   <body{% if body_class %} class="{{ body_class }}"{% endif %}{% if page.function %} data-function="{{ page.function }}"{% endif %}>
@@ -21,10 +31,8 @@ layout: compress
 
     {% include header.html %}
 
-    <main class="page-content">
-      <div>
+    <main class="contenido">
         {{ content }}
-      </div>
     </main>
 
     {% include footer.html %}

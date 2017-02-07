@@ -1,3 +1,7 @@
-
+{% if include.noicon == 1 %}
+  {% capture emailIcon %}{% endcapture %}
+{% else %}
+  {% capture emailIcon %}{% include partes/icono.svg icon="envelope" class="icon" %} {% endcapture %}
+{% endif %}
 {% assign e-mail = include.e-mail %}
-<a href="mailto:{{ e-mail }}"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#envelope"></use></svg> {{ e-mail }}</a>
+<a href="mailto:{{ e-mail }}">{{ emailIcon }}{{ e-mail }}</a>

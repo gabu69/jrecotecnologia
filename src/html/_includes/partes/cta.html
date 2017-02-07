@@ -1,0 +1,9 @@
+{% assign tel_01 = site.owner.telefonos[0] %}
+{% assign tel_02 = site.owner.telefonos[1] %}
+
+<div class="cta">
+  <div class="wrapper">
+    <h2>Consulta a nuestros asesores {% include partes/telefono tel=tel_01 noicon=1 %} y {% include partes/telefono tel=tel_02 noicon=1 %}</h2>
+    <a href="/contacto/" class="boton verde">Contáctanos</a>
+  </div>
+</div>

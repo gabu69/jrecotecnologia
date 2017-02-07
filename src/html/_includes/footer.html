@@ -1,18 +1,72 @@
-<footer class="site-footer">
-    <div class="wrapper">
-        <p>JR Ecotecnología | Nicolás Romero #429 Col. Santa Teresita, Guadalajara, Jal. | Tel. (33)3825-8247 y (33)3826-7767</p>
-        <p class="canjealo">Canjea tu <a href="">vale de ecotecnologías</a> de <a href="{{ site.url }}/hipoteca-verde/">Hipoteca Verde</a> con nosotros.</p>
-        <p><a href="{{ site.owner.facebook }}"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#facebook"></use></svg></a>
-            <a href="{{ site.owner.google.plus }}"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#google-plus"></use></svg></a>
-            <a href="{{ site.owner.linkedin }}"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#linkedin"></use></svg></a></p>
-{% comment %}
-        <iframe id='topsolar.org' name='topsolar.org'
-            src='http://topsolar.org/ts/bin/contador.asp?email=contacto@jrecotecnologia.com' 
-            frameborder='0' framespacing='0' scrolling='no' border='0' 
-            width=101 height=54 > 
-        </iframe>
-{% endcomment %}
+<footer>
+  <div class="wrapper siteFooter">
+    <div class="siteFooter__logo">
+      <div class="siteFooter__logo__svg">
+        <svg viewBox="0 0 552.92821 216.43012" preserveAspectRatio="xMidYMax">
+          <title>JR Ecotecnología</title>
+          <use xlink:href="/assets/img/svg/logo.svg#jr"></use>
+        </svg>
+      </div>
     </div>
+    <div class="sitefooter__menu">
+      <h2>Menú</h2>
+      <ul>
+      {% for link in site.data.navegacion.site-footer %}
+        {% assign link_url = link.url %}
+        <li class="sitefooter__menu__listItem"><a href="{{ link_url }}" class="sitefooter__menu__link">{{ link.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div class="siteFooter__catalogo">
+      <h2>Catálogo</h2>
+      <ul>
+      {% for link in site.data.navegacion.catalogo-footer %}
+        {% assign link_url = link.url %}
+        <li class="sitefooter__menu__listItem"><a href="{{ link_url }}" class="sitefooter__menu__link">{{ link.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div class="siteFooter__contacto">
+      <h2>Oficinas centrales Guadalajara</h2>
+      <div class="gdl">
+        <div class="siteFooter__contacto__foto">
+          <img src="/assets/img/sucursales/guadalajara-200.jpg">
+        </div>
+        <div class="siteFooter__contacto__datos">
+          <p>Nicolás Romero #429</p>
+          <p>Col. Santa Teresita</p>
+          <p>Guadalajara, Jalisco</p>
+          <p>Teléfonos:</p>
+          {% for telefono in site.owner.telefonos %}
+          <p>{% include partes/telefono tel=telefono noicon=1 %}</p>
+          {% endfor %}
+          <p>
+            <a href="{{ site.owner.facebook }}">{% include partes/icono.svg icon="facebook" class="icon" %}</a>
+            <a href="{{ site.owner.google.plus }}">{% include partes/icono.svg icon="google-plus" class="icon" %}</a>
+            <a href="{{ site.owner.linkedin }}">{% include partes/icono.svg icon="linkedin" class="icon" %}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="siteFooter__copy">
+    <div class="wrapper">
+      <p>&copy; 2017 JR Ecotecnología. Todos los derechos reservados | Canjea tu vale de ecotecnologías de Hipoteca Verde con nosotros.</p>
+    </div>
+  </div>
 </footer>
 
 {% include partes/scripts.html %}
+
+
+
+
+
+
+{% comment %}
+  <iframe id='topsolar.org' name='topsolar.org'
+    src='http://topsolar.org/ts/bin/contador.asp?email=contacto@jrecotecnologia.com' 
+    frameborder='0' framespacing='0' scrolling='no' border='0' 
+    width=101 height=54 > 
+  </iframe>
+{% endcomment %}

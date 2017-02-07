@@ -1,0 +1,197 @@
+---
+layout: default
+permalink: /
+dataLayer: 
+  { pageCategory: home,
+    tieneFormulario: true }
+function: home,form
+namespace: Home
+---
+
+<div class="svg-wrapper">
+  <div class="wrapper afueraMapa" id="mapaSucursales">
+    <h1>Proveedores de ecotecnologias en {{ site.data.sucursales | size }} ciudades de México</h1>
+    <a href="{{ site.url }}/sucursales/" class="boton naranja">Ver Sucursales</a>
+  </div>
+</div>
+<div class="proveedores">
+  <div class="wrapper">
+      <h2>Genera energía aprovechando los recursos naturales.</h2>
+  </div>
+</div>
+<div class="wrapper tu-vale">
+  <h2 class="h_gde">Tu vale de ecotecnologias</h2>
+  <p>Canjea con nosotros tu constancia de <a href="{{ site.url }}/hipoteca-verde/">Hipoteca Verde Infonavit</a></p>
+  <div class="valores">
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Ahorro</h3>
+      <p>Paga hasta un <strong>90% menos</strong> en tus cuentas de energía.</p>
+    </div>
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Patrimonio</h3>
+      <p>Incrementa el valor de tu casa con <strong>equipamiento ecológico</strong>.</p>
+    </div>
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Financiamiento</h3>
+      <p>Elije tu forma de <strong>invertir para reducir</strong> tu recibo de luz.</p>
+    </div>
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Sustentabilidad</h3>
+      <p>Cubre tus necesidades actuales <strong>sin contaminar</strong>.</p>
+    </div>
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Educación</h3>
+      <p>Ayuda con <strong>tu ejemplo</strong> a proteger el medio ambiente.</p>
+    </div>
+    <div class="valor">
+      {% include partes/check.svg %}
+      <h3>Garantía</h3>
+      <p>Todos nuestros productos cumplen con las <strong>normas federales</strong>.</p>
+    </div>
+  </div>
+  <a href="{{ site.url }}/canjea-tu-vale/" class="boton naranja">Canjea tu vale</a>
+</div>
+<div class="productos-dia">
+  <div class="wrapper">
+    <h2 class="h_gde">Ecotecnologías</h2>
+    <p>Tecnología para el medio ambiente</p>
+    <div id="svgConectores">{% include partes/conectores.svg %}</div>
+    <div class="filas fila-00">
+      <div class="rama">
+        <a href="{{ site.url }}/ecotecnologias/energia-solar/">
+          {% include partes/icono.svg icon="energia-solar" class="svgProducto" title="Energía solar fotovoltaica" %}
+          <h3 id="svgEnergia">Energía solar fotovoltaica</h3>
+        </a>
+      </div>
+    </div>
+    <div class="filas fila-01">
+      <div class="rama">
+        <a href="{{ site.url }}/ecotecnologias/aire-acondicionado/">
+          {% include partes/icono.svg icon="aire-acond" class="svgProducto" title="Aire acondicionado" %}
+          <h3 id="svgAire">Aire acondicionado</h3>
+        </a>
+      </div>
+      <div class="rama">
+        <a href="{{ site.url }}/ecotecnologias/calentadores-solares/">
+          {% include partes/icono.svg icon="calentar-agua" class="svgProducto" title="Calentadores solares" %}
+          <h3 id="svgCalentador">Calentadores solares</h3>
+        </a>
+      </div>
+    </div>
+    <div class="filas fila-02">
+      <div class="rama">
+        <a href="{{ site.url }}/ecotecnologias/linea-blanca/">
+          {% include partes/icono.svg icon="linea-blanca" class="svgProducto" title="Línea blanca" %}
+          <h3 id="svgBlanca">Línea blanca</h3>
+        </a>
+      </div>
+      <div class="rama">
+        {% include partes/icono.svg icon="pintura-imper" class="svgProducto" title="Pinturas e impermeabilizantes" %}
+        <h3 id="svgImper">Pinturas e impermeabilizantes</h3>
+      </div>
+    </div>
+    <div class="filas fila-03">
+      <div class="rama">
+        {% include partes/icono.svg icon="ilum-led" class="svgProducto" title="Iluminación LED" %}
+        <h3 id="svgLed">Iluminación LED</h3>
+      </div>
+      <div class="rama">
+        {% include partes/icono.svg icon="ahorro-agua" class="svgProducto" title="Ahorro de agua" %}
+        <h3 id="svgAgua">Ahorro de agua</h3>
+      </div>
+    </div>
+  </div>
+  <object id="planeta-ciudad" data="/assets/img/svg/ciudad.svg" type="image/svg+xml"></object>
+</div>
+<div class="productos-noche">
+  <div class="wrapper">
+    <object id="fondo-estrellas" data="/assets/img/svg/estrellas.svg" type="image/svg+xml"></object>
+    <div class="cotiza">
+      <h2 class="h_gde blanco">¡Cotiza Ahora!</h2>
+      <form action="{{ site.owner.formsurl }}" method="post" id="formHome">
+        <div class="frm-grupo">
+          <label for="frm-nombre">Nombre *</label>
+          <input type="text" name="nombre" id="frm-nombre" class="input" required />
+        </div>
+        <div class="frm-grupo">
+          <label for="frm-correo">Correo *</label>
+          <input type="email" name="correo" id="frm-correo" class="input" required />
+        </div>
+        <div class="frm-grupo">
+          <label for="frm-estado">Estado *</label>
+          <select name="estado" id="frm-estado" class="select" required>
+            <option disabled selected value> -- selecciona un estado -- </option>
+            <option value="Aguascalientes">Aguascalientes</option><option value="Baja California">Baja California</option><option value="Baja California Sur">Baja California Sur</option><option value="Campeche">Campeche</option><option value="Coahuila">Coahuila</option><option value="Colima">Colima</option><option value="Chiapas">Chiapas</option><option value="Chihuahua">Chihuahua</option><option value="Ciudad de México">Ciudad de México</option><option value="Durango">Durango</option><option value="Guanajuato">Guanajuato</option><option value="Guerrero">Guerrero</option><option value="Hidalgo">Hidalgo</option><option value="Jalisco">Jalisco</option><option value="México">México</option><option value="Michoacán">Michoacán</option><option value="Morelos">Morelos</option><option value="Nayarit">Nayarit</option><option value="Nuevo León">Nuevo León</option><option value="Oaxaca">Oaxaca</option><option value="Puebla">Puebla</option><option value="Querétaro">Querétaro</option><option value="Quintana Roo">Quintana Roo</option><option value="San Luis Potosí">San Luis Potosí</option><option value="Sinaloa">Sinaloa</option><option value="Sonora">Sonora</option><option value="Tabasco">Tabasco</option><option value="Tamaulipas">Tamaulipas</option><option value="Tlaxcala">Tlaxcala</option><option value="Veracruz">Veracruz</option><option value="Yucatán">Yucatán</option><option value="Zacatecas">Zacatecas</option>
+          </select>
+        </div>
+        <div class="frm-grupo">
+          <label for="frm-tel">Teléfono</label>
+          <input type="tel" name="telefono" id="frm-tel" class="input" pattern="[0-9]*" />
+        </div>
+
+        <input type="hidden" name="_subject" value="Contacto desde JRecotecnologia.com (home)" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <div class="paraBoton">
+          <button id="frm-enviar" type="submit" class="boton naranja">Solicitar cotización</button>
+          <span class="error">Por favor llena los campos requeridos.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="formasDePago">
+  <div class="wrapper">
+    <h2 class="h_gde">Formas de pago</h2>
+    <p>Elige cómo vas a invertir para reducir tus gastos de energía.</p>
+  </div>
+  <div class="wrapper formasDePago__list">
+    <div class="formasDePago__Item">
+      <div class="formasDePago__Item__icon">
+        <img src="/assets/img/svg/pago_contado.svg">
+      </div>
+      <div class="formasDePago__Item__nombre">
+        De contado
+      </div>
+    </div>
+    <div class="formasDePago__Item">
+      <div class="formasDePago__Item__icon">
+        <img src="/assets/img/svg/pago_infonavit.svg">
+      </div>
+      <div class="formasDePago__Item__nombre">
+        Infonavit
+      </div>
+    </div>
+    <div class="formasDePago__Item">
+      <div class="formasDePago__Item__icon">
+        <img src="/assets/img/svg/pago_tarjeta.svg">
+      </div>
+      <div class="formasDePago__Item__nombre">
+        Tarjeta de crédito
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include partes/cta.html %}
+
+<script type='application/ld+json'>
+  {
+    "@context": "http://schema.org",
+    "@type":"Organization",
+    "url":"{{ site.url }}",
+    "sameAs": [
+      "{{ site.owner.facebook }}",
+      "{{ site.owner.google.plus }}",
+      "{{ site.owner.linkedin }}"],
+    "name": "{{ site.owner.name }}",
+    "description": "{{ site.description }}",
+    "email": "mailto:{{ site.owner.email }}",
+    "logo": "{{ site.logo | prepend: site.url }}"
+  }
+</script>

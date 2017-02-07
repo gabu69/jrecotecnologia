@@ -7,28 +7,26 @@ slug: sucursales
 bodyClass: sucursalesMain
 ---
 
-<div class="wrapper sucursales">
-    <ul>
-    {% assign sucursales = site.data.sucursales | sort: 'estado' %}
+{% assign sucursales = site.data.sucursales | sort: 'estado' %}
+<div class="wrapper">
+  <ul class="sucursales__Lista">
     {% for sucursal in sucursales %}
-        <li>
-            <a href="/sucursales/{{ sucursal.slug }}.html">
-                <figure class="intrinsic intrinsic--square">
-                    <img
-                        data-sizes="auto"
-                        src="{{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-25.jpg"
-                        data-srcset="{{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-25.jpg 25w,
+    <li class="sucursales__Lista__Item">
+      <a href="/sucursales/{{ sucursal.slug }}.html">
+        <figure class="intrinsic intrinsic--square">
+          <img data-sizes="auto" src="{{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-25.jpg" data-srcset="{{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-25.jpg 25w,
                             {{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-200.jpg 200w,
                             {{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-300.jpg 300w,
                             {{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-400.jpg 400w,
                             {{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-600.jpg 600w,
                             {{ site.url }}/assets/img/sucursales/{{ sucursal.slug }}-800.jpg 800w"
-                        class="intrinsic-item lazyload"
-                        alt="{{ site.title }} {{ sucursal.nombre }}" />
-                </figure>
-                <h3 style="background-color: {{ sucursal.color }};">{{ sucursal.nombre }}</h3>
-            </a>
-            </li>
+            class="sucursales__Lista__Img intrinsic-item lazyload blur-up" alt="{{ site.title }} {{ sucursal.nombre }}" />
+        </figure>
+        <h3 class="sucursales__Lista__Nombre" style="border-color: {{ sucursal.color }};">{{ sucursal.nombre }}</h3>
+      </a>
+    </li>
     {% endfor %}
-    </ul>
+  </ul>
 </div>
+
+{% include partes/cta.html %}

@@ -22,7 +22,7 @@
     }
 }
 
-.siteHeader-topBar-selectSucursal {
+#selectSucursal {
     border: none;
     padding: 0.125rem 2rem 0.125rem 0.25rem;
     margin: 0;
@@ -39,6 +39,7 @@
 }
 
 .siteHeader-topBar-telefono a,
+.siteHeader-topBar-telefono span,
 .siteHeader-topBar-correo a,
 .siteHeader-topBar-ubicacion a {
     color: $blanco;

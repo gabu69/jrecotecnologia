@@ -2,14 +2,13 @@
 
 'use strict';
 
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const svgmin = require('gulp-svgmin');
-const svgstore = require('gulp-svgstore');
-const cheerio = require('gulp-cheerio');
-const rename = require('gulp-rename');
-const purify = require('gulp-purifycss');
-
+const gulp = require('gulp'),
+      gutil = require('gulp-util'),
+      svgmin = require('gulp-svgmin'),
+      svgstore = require('gulp-svgstore'),
+      cheerio = require('gulp-cheerio'),
+      rename = require('gulp-rename'),
+      purify = require('gulp-purifycss');
 
 const requireDir = require('require-dir');
 const tasks = requireDir('./gulp/tasks', {recurse: true}); // eslint-disable-line
@@ -27,7 +26,7 @@ gulp.task('scripts', gulp.parallel('scripts:webpack'));
 // 'gulp assets --prod' -- same as above but with production settings
 gulp.task('assets', gulp.series(
   gulp.parallel('styles', 'scripts'),
-  gulp.series('images', 'copy:assets', 'copy:inline')
+  gulp.series('images', 'copy:assets')
 ));
 
 // 'gulp clean' -- removes temporary and built files
@@ -44,45 +43,12 @@ gulp.task('build:site', gulp.series('copy:tmp', 'inject', 'copy:productos', 'sit
 
 // 'gulp build' -- same as 'gulp' but doesn't serve site
 // 'gulp build --prod' -- same as above but with production settings
-gulp.task('build', gulp.series('clean', 'assets', 'build:site', 'html', 'php', 'copy:favicons', 'inject:htaccess', 'inject:trabajador'));
+gulp.task('build', gulp.series('clean', 'assets', 'build:site', 'html', 'php', 'copy:static', 'inject:htaccess', 'inject:trabajador'));
 
 gulp.task('default', gulp.series('build', gulp.parallel('watch', 'server')));
 
-gulp.task('iconos', function () {
-  return gulp.src('./src/assets/icons/*')
-    .pipe(svgmin({
-            plugins: [{
-                cleanupIDs: false
-            }]
-        }))
-    .pipe(svgstore({ inlineSvg: true}))
-    .pipe(cheerio({
-      run: function ($, file) {
-        $('svg').addClass('hide');
-        $('[fill]').removeAttr('fill');
-      },
-      parserOptions: { xmlMode: true }
-    }))
-    .pipe(gulp.dest('./_assets/images/'));
-});
 
-gulp.task('productos', function () {
-  return gulp.src('./src/assets/productos/*')
-    .pipe(svgmin({
-            plugins: [{
-                cleanupIDs: false
-            }]
-        }))
-    .pipe(svgstore({ inlineSvg: true}))
-    .pipe(cheerio({
-      run: function ($, file) {
-        $('svg').addClass('hide');
-      },
-      parserOptions: { xmlMode: true }
-    }))
-    .pipe(rename('iconos-productos.svg'))
-    .pipe(gulp.dest('./_assets/images/productos/'));
-});
+
 
 gulp.task('mapa', function () {
   const genMapa = child.spawn('node', ['./src/assets/mapa/mapa-home.js']);

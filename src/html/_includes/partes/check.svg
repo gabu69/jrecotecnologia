@@ -1,0 +1,1 @@
+{% include partes/icono.svg icon="check" class="icon" %}

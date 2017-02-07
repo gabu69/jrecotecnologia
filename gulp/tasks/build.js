@@ -33,6 +33,6 @@ gulp.task('watch', () => {
     gulp.watch([paths.mdFilesGlob, paths.htmlFilesGlob, paths.ymlFilesGlob, paths.xmlFilesGlob], gulp.series('build:site'));
     gulp.watch(paths.jsFilesGlob, gulp.series('scripts', 'copy:assets'));
     gulp.watch(paths.sassFilesGlob, gulp.series('styles', 'copy:assets'));
-    gulp.watch(paths.imageFilesGlob, gulp.series('images', 'copy:inline', 'copy:assets'));
+    gulp.watch(paths.imageFilesGlob, gulp.series('images', 'copy:assets'));
     gulp.watch(paths.phpFiles + '/**/*', gulp.series('copy:php'));
 });

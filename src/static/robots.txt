@@ -1,0 +1,3 @@
+Sitemap: https://www.jrecotecnologia.com/sitemap.xml
+User-agent:* 
+Disallow:

@@ -94,7 +94,7 @@ label {
 //   white-space: nowrap;
 // }
 
-form button.boton-naranja { margin-top: $spacing-unit; }
+form button.boton { margin-top: $spacing-unit; }
 
 // form {
 //   ul,
@@ -140,9 +140,9 @@ form .status {
   bottom: 0;
   left: 0;
   width: 100%;
-  line-height: 5rem;
   text-align: center;
   background-color: $brand-color3;
+  padding: $spacing-unit;
 }
 
 /* .invalid class prevents CSS from automatically applying */

@@ -3,7 +3,7 @@
 <nav class="subHeader-breadcrumbs"itemscope itemtype="http://schema.org/BreadcrumbList">
   <span itemprop="itemListElement" itemscope
       itemtype="http://schema.org/ListItem">
-    <svg class="icon"><use xlink:href="{% asset_path icons.svg %}#home"></use></svg>
+    {% include partes/icono.svg icon="home" class="icon" %}
     <a href="{{ site.url }}" class="breadcrumb__item" itemscope itemtype="http://schema.org/Thing" itemprop="item">
       <span itemprop="name">{{ site.title }}</span>
     </a> <span class="breadcrumb__sep">></span>

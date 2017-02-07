@@ -1,3 +1,4 @@
+import isMobile from 'ismobilejs';
 import connectAll from './conectores';
 import cargaMapa from './mapa';
 
@@ -20,7 +21,7 @@ function actualResizeHandler() {
 }
 
 export default function() {
-  window.addEventListener("resize", resizeThrottler, false);
   cargaMapa();
+  if (!isMobile.any) window.addEventListener("resize", resizeThrottler, false);
   connectAll();
 }

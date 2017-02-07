@@ -1,0 +1,37 @@
+<nav class="siteHeader-navegacion" role="navigation">
+  <a href="{{ site.url }}" class="siteHeader-logoTipo">
+    <img src="/assets/img/svg/logo.svg" alt="{{ site.title }}">
+  </a>
+  <input type="checkbox" id="menu-toggle" class="siteHeader-menuToggle">
+    <label for="menu-toggle" class="siteHeader-labelToggle"></label>
+  </input>
+  <ul id="navegacion" class="siteHeader-menuPrincipal">
+    {% for link in site.data.navegacion.site-header %}
+      {% assign link_url = link.url %}
+      <li class="siteHeader-menuPrincipal-listItem">
+        <a href="{{ link_url }}" class="siteHeader-menuPrincipal-link{% if page.url == link.url %} activo{% endif %}">
+          {{ link.title }}
+        </a>
+      {% if link.submenu %}
+        <div class="siteHeader-subMenu">
+          <ul class="siteHeader-subMenu-list">
+          {% for sublink in link.submenu %}
+            {% assign sublink_url = sublink.url %}
+            <li class="siteHeader-subMenu-listItem">
+              <a href="{{ sublink_url }}" class="siteHeader-subMenu-link{% if page.url == sublink.url %} activo{% endif %}{% if sublink.icon == null %} sin-icono{% endif %}">
+                {% if sublink.icon %}
+                  {% include partes/icono.svg icon=sublink.icon title=sublink.title %}
+                {% endif %}
+                {{ sublink.title }}
+              </a>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </li>
+      {% else %}
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

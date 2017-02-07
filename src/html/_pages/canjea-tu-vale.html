@@ -7,6 +7,7 @@ dataLayer:
   { pageCategory: canjea,
     tieneFormulario: true }
 function: form
+slug: canjea
 ---
 
 <div class="wrapper">
@@ -124,8 +125,12 @@ function: form
 
             <input type="hidden" name="_subject" value="Contacto desde JRecotecnologia.com (canjea)" />
             <input type="text" name="_gotcha" style="display:none" />
-            <button id="frm-enviar" type="submit" class="boton-naranja">Solicitar cotización</button>
+            <div class="aquiBoton">
+                <button id="frm-enviar" type="submit" class="boton blanco">Solicitar cotización</button>
+            </div>
             <span class="error">Por favor llena los campos requeridos.</span>
         </form>
     </div>
 </div>
+
+{% include partes/cta.html %}

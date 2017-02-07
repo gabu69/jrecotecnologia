@@ -19,3 +19,12 @@
 		background-color: darken($brand-color2, 10%);;
 	}
 }
+
+.blur-up {
+  filter: blur(3px);
+  transition: filter 250ms;
+}
+
+.blur-up.lazyloaded {
+  filter: blur(0);
+}

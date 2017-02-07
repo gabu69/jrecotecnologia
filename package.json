@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp build",
-    "server": "gulp",
+    "start": "gulp",
     "prod": "gulp build --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -55,7 +55,8 @@
     "topojson": "^1.6.26",
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.1.8",
-    "webpack": "2.1.0-beta.25",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-chunk-hash": "^0.4.0",
     "webpack-md5-hash": "0.0.5"
   },
   "repository": {
@@ -65,6 +66,8 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-runtime": "^6.20.0",
+    "barba.js": "^1.0.0",
+    "es6-promise": "^4.0.5",
     "flickity": "^2.0.5",
     "formbase": "^6.0.0",
     "ismobilejs": "^0.4.0",

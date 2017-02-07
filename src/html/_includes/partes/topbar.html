@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <select name="selectSucursal" id="selectSucursal" class="select siteHeader-topBar-selectSucursal">
+  {% assign sucursales = site.data.sucursales | sort: 'ciudad' %}
+  {% for sucursal in sucursales %}
+      <option value="{{ sucursal.slug }}"{% if sucursal.slug == 'guadalajara' %} selected{% endif %}>Sucursal {{ sucursal.nombre }}</option>
+  {% endfor %}
+  </select>
+  <span class="siteHeader-topBar-ubicacion">
+    <a href="{{ site.url }}/sucursales/guadalajara.html">
+      {% include partes/icono.svg icon="map-marker" class="icon" %} Ubicación
+    </a>
+  </span>
+  <span class="siteHeader-topBar-telefono">{% include partes/telefono tel=3338258247 %}</span>
+  <span class="siteHeader-topBar-correo">{% include partes/e-mail e-mail=site.owner.email %}</span>
+</div>

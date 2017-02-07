@@ -1,10 +1,8 @@
+import { $id, $class } from '../../util';
+
 // Basado en https://gist.github.com/alojzije/11127839
 
 // Funciones auxiliares
-
-function $id(id) {
-	return document.getElementById(id);
-}
 
 function signum(x) {
   return (x < 0) ? -1 : 1;

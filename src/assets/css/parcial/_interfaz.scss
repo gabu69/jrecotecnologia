@@ -1,21 +1,71 @@
+.boton {
+  display: inline-block;
+  position: relative;
+  height: 3rem;
+  line-height: 3rem;
+  border: 0;
+  border-radius: 0.3125rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  background-color: $brand-color3;
+  color: $blanco;
+  margin: 0.625rem 0.625rem;
+  padding: 0 1.75rem;
+  transition: box-shadow 0.2s, opacity 0.2s;
+  transition-delay: box-shadow 0.2s, opacity 0s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  &:hover {
+    opacity: 0.9;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: 0s;
+    text-decoration: none;
+  }
+
+  &:active {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: 0s;
+  }
+}
+.boton.naranja {
+  background-color: $brand-color3;
+  color: $blanco;
+}
+.boton.blanco {
+  background-color: $blanco;
+  color: $text-color;
+}
+.boton.verde {
+  background-color: $brand-color;
+  
+  &:hover {
+    color: $blanco;
+  }
+}
+
 .boton-naranja {
-    height: 3rem;
-    background-color: $brand-color3;
-    border: 0;
-    border-radius: 0.625rem;
-    text-transform: none;
-    color: #ffffff;
-    padding: 0.625rem 1.75rem;
-    font-family: inherit;
-    font-size: 1.2rem;
-    font-weight: 400;
-    position: relative;
-    
-    &:hover {
+  height: 3rem;
+  background-color: $brand-color3;
+  border: 0;
+  border-radius: 0.625rem;
+  text-transform: none;
+  color: #ffffff;
+  padding: 0.625rem 1.75rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 400;
+  position: relative;
+  
+  &:hover {
 		color: #ffffff;
 		background-color: darken($brand-color3, 5);
 		text-decoration: none;
 	}
+}
+
+button:disabled {
+  cursor: default;
+  display: none;
 }
 
 .centrar {
@@ -62,4 +112,32 @@
     width: 100%;
     height: 100%;
   }
+}
+
+
+// ----------------------------------------------------------------------------
+
+div.cta {
+  background-color: $background-color;
+  border-top: 1px solid $grey-color-light;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    align-content: center;
+    
+    padding: $spacing-unit / 2 $spacing-unit;
+  }
+  h2 {
+    flex-grow: 1;
+    text-transform: uppercase;
+  }
+  a {
+    
+  }
+  
+  @include media-query($on-laptop) {
+		display: none;
+	}
 }

@@ -1,12 +1,10 @@
-function $id(id) {
-	return document.getElementById(id);
-}
+import { $id, $class } from './util';
 
 var selectSucursal = $id('selectSucursal');
 
 function cambioSucursal(myArr) {
-  var telefono = document.getElementsByClassName('siteHeader-topBar-telefono')[0];
-  var correo = document.getElementsByClassName('siteHeader-topBar-correo')[0];
+  var telefono = $class('siteHeader-topBar-telefono');
+  var correo = $class('siteHeader-topBar-correo');
   var ubicacion = document.querySelector('.siteHeader-topBar-ubicacion a');
   var ubicaurl = document.location.origin + '/sucursales/' + selectSucursal.value + '.html';
   telefono.innerHTML = myArr.telefono;

@@ -1,0 +1,181 @@
+.sucursal #map_canvas {
+  height: 250px;
+  border-bottom: 0.5rem solid;
+}
+
+.sucursal .subHeader-breadcrumbs {
+  @include media-query($on-desktop) {
+    display: block;
+  }
+  @include media-query($on-palm) {
+    display: none;
+  }
+}
+
+.sucursal .subHeader-breadcrumbs,
+.sucursal .subHeader-breadcrumbs a {
+  color: $text-color;
+}
+
+h1.sucursal__Nombre {
+  margin-top: 0;
+
+  @include media-query($on-palm) {
+    font-size: 1.5rem;
+  }
+}
+
+.sucursal__Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: $spacing-unit;
+}
+
+.sucursal__Containee {
+  width: 63%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  
+  @include media-query($on-desktop) {
+    width: 59%;
+  }
+  @include media-query($on-laptop) {
+    width: 50%;
+    justify-content: flex-start;
+  }
+  @include media-query($on-palm) {
+    width: 100%;
+  }
+}
+
+.sucursal__Fotos {
+  width: 40%;
+  flex: 0 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @include media-query($on-desktop) {
+    width: 33%;
+  }
+  @include media-query(900px) {
+    width: 30%;
+  }
+  @include media-query($on-laptop) {
+    width: 50%;
+  }
+  @include media-query($on-palm) {
+    width: 50%;
+  }
+}
+
+.sucursal__Info__desc {
+  width: 60%;
+  align-self: center;
+  margin-bottom: 1rem;
+  padding-left: 5%;
+
+  @include media-query($on-desktop) {
+    width: 67%;
+    padding-left: 3%;
+  }
+  @include media-query(900px) {
+    width: 70%;
+    
+    .boton {
+      font-size: 1rem;
+    }
+  }
+  @include media-query($on-laptop) {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 5%;
+  }
+  @include media-query($on-palm) {
+    padding-right: 0;
+  }
+}
+
+.sucursal__Info {
+  width: 60%;
+  flex: 0 1 auto;
+  padding-left: 5%;
+  
+  h3 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  
+  @include media-query($on-desktop) {
+    width: 67%;
+    padding-left: 3%;
+  }
+  @include media-query(900px) {
+    width: 70%;
+  }
+  @include media-query($on-laptop) {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 5%;
+  }
+  @include media-query($on-palm) {
+    width: 100%;
+    margin-bottom: $spacing-unit;
+  }
+}
+
+.sucursal__Info__direccion {
+  position: relative;
+
+  .codigopostal:before {
+    content: "C.P. ";
+  }
+  .icono-mapa {
+    width: 2rem;
+  }
+  a {
+    display: block;
+    margin-top: $spacing-unit / 2;
+  }
+}
+
+.sucursal__Info__contactos {
+  p {
+    font-weight: bold;
+    margin: 0;
+  }
+  a {
+    font-weight: 400;
+  }
+}
+
+.sucursal__Form {
+  position: relative;
+  width: 33%;
+  flex: 0 1 auto;
+  padding: $spacing-unit/2;
+  color: $blanco;
+  background-color: $brand-color3;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  @include media-query($on-desktop) {
+    width: 39%;
+  }
+  @include media-query($on-laptop) {
+    width: 50%;
+  }
+  @include media-query($on-palm) {
+    width: 100%;
+  }
+}
+.sucursal__Form__boton {
+  width: 100%;
+  text-align: center;
+}

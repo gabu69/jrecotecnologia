@@ -1,3 +1,12 @@
+{% if include.noicon == 1 %}
+  {% capture telIcon %}{% endcapture %}
+{% else %}
+  {% capture telIcon %}{% include partes/icono.svg icon="phone" class="icon" %} {% endcapture %}
+{% endif %}
 {% assign ph_ary = include.tel | split: '' %}
 {% assign phone = ph_ary[0] | append: ph_ary[1] | append: ph_ary[2] | append: '-' | append: ph_ary[3] | append: ph_ary[4] | append: ph_ary[5] | append: '-' | append: ph_ary[6] | append: ph_ary[7] | append: ph_ary[8] | append: ph_ary[9] %}
-<a href="tel:+52{{ include.tel }}"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#phone"></use></svg> {{ phone }}</a>
+
+{% comment %}
+<a href="tel:+52{{ include.tel }}">{{ telIcon }}{{ phone }}</a>
+{% endcomment %}
+<span class="phone-number" data-href="tel:+52{{ include.tel }}">{{ telIcon }}{{ phone }}</span>

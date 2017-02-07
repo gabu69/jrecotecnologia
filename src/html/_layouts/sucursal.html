@@ -5,87 +5,78 @@ dataLayer:
   tieneFormulario: true }
 ---
 
-{% include partes/jsonld-sucursal %}
-{% include partes/googleMap.html %}
+{% include partes/googleMap.html color=page.color %}
 
 <div class="wrapper">
   {% include partes/breadcrumbs.html %}
-  <h1 class="headerSucursal">Ecotecnologías en {{page.nombre}}, {{page.estado}}</h1>
 
-  <div class="sucursalContainer">
-    <div class="sucursalFotos">
-      <figure class="intrinsic intrinsic--square">
-        <img
-          data-sizes="auto"
-          src="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-25.jpg"
-          data-srcset="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-25.jpg 25w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-200.jpg 200w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-300.jpg 300w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-400.jpg 400w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-600.jpg 600w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-800.jpg 800w"
-          class="intrinsic-item lazyload"
-          alt="{{ site.title }} {{ page.nombre }}" />
-      </figure>
-      <figure class="intrinsic intrinsic--square">
-        <img
-          data-sizes="auto"
-          src="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-25.jpg"
-          data-srcset="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-25.jpg 25w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-200.jpg 200w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-300.jpg 300w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-400.jpg 400w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-600.jpg 600w,
-              {{ site.url }}/assets/img/sucursales/{{ page.slug }}-logo-800.jpg 800w"
-          class="intrinsic-item lazyload"
-          alt="Ecotecnologías en {{page.nombre}}" />
-      </figure>
-    </div>
-    <div class="sucursalInfo">
-      <div class="descripcion">{{ page.slogan }}</div>
-      <div class="catalogo"><a href="{{ site.url }}/ecotecnologias/" class="boton-naranja">Catálogo de ecotecnologias</a></div>
-      <div class="direccion">
-        <h3>Estamos a tus ordenes en:</h3>
-        <span>{{ page.direccion1 }}{% if page.direccion2 %}<br>{{ page.direccion2 }}{% endif %}{% if page.colonia %}<br>{{ page.colonia }}{% endif %}</span><br>
-        <span>{{ page.ciudad }}</span>, <span>{{ page.estado }}</span> <span class="codigopostal">{{ page.cp }}</span>
-        <a href="{{ page.gmaps }}"><img src="{{ site.url }}/assets/img/svg/icono-mapa.svg" alt="Ver mapa" class="icono-mapa"> Ver Mapa</a>
+  <h1 class="sucursal__Nombre">Ecotecnologías en {{page.nombre}}, {{page.estado}}</h1>
+
+  <div class="sucursal__Container">
+    <div class="sucursal__Containee">
+      <div class="sucursal__Fotos">
+          <figure class="intrinsic intrinsic--square">
+            <img data-sizes="auto"
+              src="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-25.jpg"
+              data-srcset="{{ site.url }}/assets/img/sucursales/{{ page.slug }}-25.jpg 25w,
+                  {{ site.url }}/assets/img/sucursales/{{ page.slug }}-200.jpg 200w,
+                  {{ site.url }}/assets/img/sucursales/{{ page.slug }}-300.jpg 300w,
+                  {{ site.url }}/assets/img/sucursales/{{ page.slug }}-400.jpg 400w,
+                  {{ site.url }}/assets/img/sucursales/{{ page.slug }}-600.jpg 600w,
+                  {{ site.url }}/assets/img/sucursales/{{ page.slug }}-800.jpg 800w"
+              class="intrinsic-item lazyload blur-up" alt="{{ site.title }} {{ page.nombre }}" />
+          </figure>
       </div>
-      <div class="horarios">
-        <h3>Horarios de atención:</h3>
-        {% include partes/horario %}
+      <div class="sucursal__Info__desc">
+        <p>{{ page.slogan }}</p>
+        <div class="sucursal__Info__catalogo"><a href="{{ site.url }}/ecotecnologias/" class="boton naranja">Catálogo de ecotecnologias</a></div>
       </div>
-      <div class="contactos">
-        <h3>Contáctanos:</h3>
-        {% include partes/telefono tel=page.tel %} {% include partes/e-mail e-mail=page.correo %}
-        <a href="{{ page.facebook }}" class="facebook"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#facebook"></use></svg> {{ page.facebook | remove: "https://www.facebook.com/" | remove: "/" }}</a>
-        <a href="{{ page.gplus }}" class="googleplus"><svg class="icon"><use xlink:href="{% asset_path icons.svg %}#google-plus"></use></svg> {{ page.gplus | remove: "https://plus.google.com/" | remove: "/" }}</a>
+      <div class="sucursal__Info">
+        <div class="sucursal__Info__direccion">
+          <h3>Estamos a tus ordenes en:</h3>
+          <span>{{ page.direccion1 }}{% if page.direccion2 %}<br>{{ page.direccion2 }}{% endif %}{% if page.colonia %}<br>{{ page.colonia }}{% endif %}</span><br>
+          <span>{{ page.ciudad }}</span>, <span>{{ page.estado }}</span> <span class="codigopostal">{{ page.cp }}</span>
+          <a href="{{ page.gmaps }}">
+            <img src="{{ site.url }}/assets/img/svg/icono-mapa.svg" alt="Ver mapa" class="icono-mapa"> Ver Mapa</a>
+        </div>
+        <div class="sucursal__Info__horarios">
+          <h3>Horario de atención:</h3>
+          {% include partes/horario %}
+        </div>
+        <div class="sucursal__Info__contactos">
+          <h3>Contáctanos:</h3>
+          <p>Teléfono: {% include partes/telefono tel=page.tel noicon=1 %}</p>
+          <p>Correo: {% include partes/e-mail e-mail=page.correo noicon=1 %}</p>
+          <p>Facebook: <a href="{{ page.facebook }}" class="facebook">{{ page.facebook | remove: "https://www.facebook.com/" | remove: "/" }}</a></p>
+          <p>Google+: <a href="{{ page.gplus }}" class="googleplus">{{ page.gplus | remove: "https://plus.google.com/" | remove: "/" }}</a></p>
+        </div>
       </div>
     </div>
-    <div class="sucursalContacto">
+    <div class="sucursal__Form">
       <form action="{{ site.owner.formsurl }}" method="post" id="form{{ page.nombre }}">
-        <h3>Contacta a esta sucursal</h3>
-        <div class="form-group">
-          <label for="frm-nombre">Nombre *</label>
-          <input type="text" name="nombre" id="frm-nombre" class="input" required />
-        </div>
-        <div class="form-group">
-          <label for="frm-correo">Correo *</label>
-          <input type="email" name="correo" id="frm-correo" class="input" required />
-        </div>
-        <div class="form-group">
-          <label for="frm-tel">Teléfono</label>
-          <input type="tel" name="telefono" id="frm-tel" class="input" pattern="[0-9]*" />
-        </div>
-        <div class="form-group">
-          <label for="frm-msg">¿En qué te podemos ayudar?</label>
-          <textarea id="frm-msg" name="mensaje" class="input" spellcheck="true" rows="5" cols="50"></textarea>
-        </div>
+        <h2>Contacta a esta sucursal</h2>
+
+        <label for="frm-nombre">Nombre *</label>
+        <input type="text" name="nombre" id="frm-nombre" class="input" required />
+
+        <label for="frm-correo">Correo *</label>
+        <input type="email" name="correo" id="frm-correo" class="input" required />
+
+        <label for="frm-tel">Teléfono</label>
+        <input type="tel" name="telefono" id="frm-tel" class="input" pattern="[0-9]*" />
+
+        <label for="frm-msg">¿En qué te podemos ayudar?</label>
+        <textarea id="frm-msg" name="mensaje" class="input" spellcheck="true" rows="5" cols="50"></textarea>
 
         <input type="hidden" name="_subject" value="Contacto desde JRecotecnologia.com ({{ page.nombre }})" />
         <input type="text" name="_gotcha" style="display:none" />
-        <button id="frm-enviar" type="submit" class="boton-naranja">Contactar a {{ page.nombre }}</button>
+        <div class="sucursal__Form__boton">
+          <button id="frm-enviar" type="submit" class="boton blanco">Contactar a {{ page.nombre }}</button>
+        </div>
         <span class="error">Por favor llena los campos requeridos.</span>
       </form>
     </div>
   </div>
 </div>
+
+{% include partes/jsonld-sucursal %}

@@ -1,0 +1,24 @@
+{
+  "lang": "es",
+  "dir": "ltr",
+  "name": "JR Ecotecnología",
+  "description": "Proveedor autorizado del programa Hipoteca Verde a nivel nacional, con 20 sucursales en 15 estados de la República Mexicana.",
+  "short_name": "JR Eco",
+  "icons": [
+		{
+			"src": "\/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image\/png"
+		},
+		{
+			"src": "\/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image\/png"
+		}
+	],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "natural",
+  "theme_color": "#44ac64",
+  "background_color": "#ffffff"
+}

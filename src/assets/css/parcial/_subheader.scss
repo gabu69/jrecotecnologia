@@ -1,71 +1,65 @@
 .subHeader {
-    position: relative;
-    margin-bottom: $spacing-unit;
-    padding: $spacing-unit 0;
-    
-    &:after {
-        content: '';
-        background: linear-gradient(rgba(239, 168, 13, 0.7), rgba(239, 168, 13, 0.7)), url('/assets/img/subheader.jpg');
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        overflow: hidden;
-        filter: blur(.05rem);
-    }
+  position: relative;
+  margin-bottom: $spacing-unit;
+  padding: $spacing-unit 0;
+  &:after {
+    content: '';
+  //background: linear-gradient(rgba(239, 168, 13, 0.7), rgba(239, 168, 13, 0.7)), url('/assets/img/subheader.jpg');
+    background: linear-gradient(rgba(231, 122, 106, 0.7), rgba(231, 122, 106, 0.7)), url('/assets/img/subheader.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    filter: blur(.05rem);
+  }
 }
 
 .subHeader-contenedor {
-    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-	margin-right: auto;
-	margin-left: auto;
-	padding-right: $spacing-unit;
-	padding-left: $spacing-unit;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    @include media-query($on-laptop) {
-		max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-		padding-right: $spacing-unit / 2;
-		padding-left: $spacing-unit / 2;
-	}
+  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit;
+  padding-left: $spacing-unit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include media-query($on-laptop) {
+    max-width : calc(#{$content-width} - (#{$spacing-unit}));
+    padding-right: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
+  }
 }
 
 .subHeader-pageTitle {
-    position: relative;
-    z-index: 1;
-    
-    h1 {
-        color: #fff;
-        text-transform: uppercase;
-        margin: 0;
-        
-        @include media-query($on-palm) {
-            font-size: 1rem;
-            font-weight: bold;
-        }
+  position: relative;
+  z-index: 1;
+  h1 {
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+    @include media-query($on-palm) {
+      font-size: 1rem;
+      font-weight: bold;
     }
+  }
 }
 
 .subHeader-breadcrumbs {
-    position: relative;
-    z-index: 1;
-    text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: $small-font-size;
+  .icon {
+    margin-bottom: 4px;
+  }
+  a {
     color: #fff;
-    font-size: $small-font-size;
-    
-    .icon {
-        margin-bottom: 4px;
-    }
-    
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
-    
-    @include media-query($on-desktop) {
-        display: none;
-    }
+    text-decoration: none;
+  }
+  @include media-query($on-desktop) {
+    display: none;
+  }
 }

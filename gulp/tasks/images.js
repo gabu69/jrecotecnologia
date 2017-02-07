@@ -1,12 +1,15 @@
 'use strict';
 
-const gulp     = require('gulp');
-const imagemin = require('gulp-imagemin');
-const newer    = require('gulp-newer');
-const size     = require('gulp-size');
-const rename   = require('gulp-rename');
-const resize   = require('./resize-images');
-const merge2   = require('merge2');
+const gulp     = require('gulp'),
+      cheerio      = require('gulp-cheerio'),
+      imagemin = require('gulp-imagemin'),
+      newer    = require('gulp-newer'),
+      size     = require('gulp-size'),
+      rename   = require('gulp-rename'),
+      svgstore     = require('gulp-svgstore'),
+      svgmin       = require('gulp-svgmin'),
+      resize   = require('./resize-images'),
+      merge2   = require('merge2');
 
 // include paths file
 const paths    = require('../paths');
@@ -82,6 +85,26 @@ gulp.task('images:sucursales', function() {
   return merge2(streams);
 });
 
+gulp.task('icons', function () {
+  return gulp.src(paths.iconFiles + '/**/*.svg')
+    .pipe(svgmin({
+        plugins: [{
+          cleanupIDs: false
+        }]
+      }))
+    .pipe(svgstore({ inlineSvg: true}))
+    .pipe(cheerio({
+      run: function ($, file) {
+        $('svg').attr('style', 'display:none');
+        $('[fill]').removeAttr('fill');
+      },
+      parserOptions: { xmlMode: true }
+    }))
+    .pipe(size({
+      showFiles: true
+    }))
+    .pipe(gulp.dest(paths.imageFiles + '/svg/'));
+});
 
 gulp.task('images:svg', () =>
   gulp.src(paths.imageFiles + '/svg/**/*')

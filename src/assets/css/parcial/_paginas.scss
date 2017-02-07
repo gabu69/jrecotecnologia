@@ -54,14 +54,21 @@
 }
 
 .frm-der-nar {
+	position: relative;
 	float: right;
 	width: 33.33333333%;
-	background-color: #f9b258;
-	border: 30px solid #f9b258;
+	background-color: $brand-color3;
+	color: $blanco;
+	border: 30px solid $brand-color3;
 	margin-bottom: 20px;
 	
 	h2 {
 		margin-top: 0;
+	}
+	
+	.aquiBoton {
+	  	width: 100%;
+	  	text-align: center;
 	}
 
 	@include media-query($on-desktop) {
@@ -85,7 +92,7 @@
 		margin-bottom: 0;
 	}
 	
-	.boton-naranja {
+	.boton {
 		display: inline-block;
 		margin: $spacing-unit 0;
 	}
@@ -150,7 +157,7 @@
 			margin-top: 0;
 		}
 		
-		.boton-naranja {
+		.boton {
 			display: inline-block;
 		}
 		
@@ -380,9 +387,13 @@
 	overflow: initial;
 }
 
-.contacto .boton-naranja {
+.contacto .boton {
 	display: inline-block;
 	margin: $spacing-unit 0;
+}
+
+.contacto form {
+	position: relative;
 }
 
 .contacto .frm-der-nar a {

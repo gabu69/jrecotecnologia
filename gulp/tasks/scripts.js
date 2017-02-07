@@ -4,17 +4,18 @@ const path         = require('path');
 const gulp         = require('gulp');
 const webpack      = require('webpack');
 const Md5Hash      = require('webpack-md5-hash');
+const WebpackChunkHash = require('webpack-chunk-hash');
 
 // include paths & config files
 const paths        = require('../paths');
 
 gulp.task('scripts:webpack', function(callback) {
     var webpackPlugins = [
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify(argv.prod ? 'production' : 'development'),
-            }
-        })
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify(argv.prod ? 'production' : 'development'),
+        }
+      })
     ];
     var output = {
       path: path.join('/home/ubuntu/workspace/', paths.jsFilesTemp),
@@ -33,7 +34,8 @@ gulp.task('scripts:webpack', function(callback) {
         webpackPlugins.push(new webpack.LoaderOptionsPlugin({
           minimize: true
         }));
-        webpackPlugins.push(new Md5Hash());
+//        webpackPlugins.push(new Md5Hash());
+        webpackPlugins.push(new WebpackChunkHash({algorithm: 'md5'}));
         output.filename = '[name]-[chunkhash].js';
         output.chunkFilename = 'chunk/[name]-[chunkhash].js';
         sourceMap = '#source-map';
@@ -46,7 +48,8 @@ gulp.task('scripts:webpack', function(callback) {
     var webpackConfig = {
         context: path.join('/home/ubuntu/workspace/', paths.jsFiles),
         entry: {
-            main: './main'
+//          library: 'core-js/fn/promise',
+          main: './main'
         },
         output: output,
         module: {
@@ -70,7 +73,7 @@ gulp.task('scripts:webpack', function(callback) {
                 presets: [
                   ["es2015", { "modules": false }]
                 ],
-                plugins: ['transform-runtime']
+                plugins: ["transform-runtime"]
               }
             }
           ]
@@ -83,6 +86,7 @@ gulp.task('scripts:webpack', function(callback) {
         if (err) {
             return callback(err);
         }
+//        console.log(stats.toString({chunks: true,errors: true,warnings: true}));
         console.log(stats.toString({chunks: false}));
         callback();
     });

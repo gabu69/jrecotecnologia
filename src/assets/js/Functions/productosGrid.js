@@ -1,8 +1,6 @@
-var Flickity = require('flickity');
+import { $id } from '../util';
 
-function $id(id) {
-	return document.getElementById(id);
-}
+var Flickity = require('flickity');
 
 export default function() {
   let sliders = [].slice.call(document.querySelectorAll('.main-carousel')),

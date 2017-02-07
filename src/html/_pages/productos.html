@@ -3,44 +3,39 @@ layout: con-cabeza
 title: Catálogo de ecotecnologias
 description: "Conoce nuestras ecotecnologías, cuida el medio ambiente y ahorra energía eléctrica, agua y gas."
 permalink: /ecotecnologias/
+slug: ecotecnologias
 ---
 
-<style type="text/css">
-    ul.ecotecnologias {
-        list-style: none;
-    }
-    ul.ecotecnologias svg {
-        width: 3rem;
-        height: 3rem;
-        display: inline-block;
-        vertical-align: middle;
-        fill: currentColor;
-    }
-</style>
+{% include partes/productosHeader.html %}
 
-<div class="wrapper" style="overflow: initial;">
-{% comment %}
-    <h2>Conoce nuestras ecotecnologías.</h2>
-    <h3>Ahorra electricidad</h3>
-    <p>Páneles solares . . .</p>
-    <p>Instala focos ahorradores. Tenemos la mejor calidad en lámparas fluorescentes compactas y focos de LED.</p>
-    <p>Aire acondicionado . . .</p>
-    <p>Refrigeradores . . .</p>
-    <h3>Ahorra agua</h3>
-    <p>Válvulas y llaves ahorradoras que optimizan el chorro de agua e incrementan la presión para disminuir el consumo durante el baño y al lavar la vajilla.</p>
-    <h3>Ahorra gas</h3>
-    <p>Utiliza la energía del sol para calentar el agua que usas en tu casa. Tenemos calentadores solares domésticos de todos los tamaños.</p>
-    <p>Estufas . . .</p>
-{% endcomment %}
-    <ul class="ecotecnologias">
-        {% for sublink in site.data.navegacion.site-header[1].submenu %}
-            {% assign sublink_url = site.url | append: sublink.url %}
-            <li>
-                <a href="{{ sublink_url }}" >
-                    <svg><title>{{ sublink.title }}</title><use xlink:href="{% asset_path icons.svg %}#{{ sublink.icon }}"></use></svg>
-                    {{ sublink.title }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+<div class="wrapper productosMarcas">
+  <h2 class="h_gde">Nuestras marcas</h2>
+  <div class="productosMarcas__list">
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/aux.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/cato.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/disa.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/era.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/hera.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/metalflu.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/mirage.jpg" alt="">
+    </div>
+    <div class="productosMarcas__listItem">
+      <img src="/assets/img/marcas/whirlpool.jpg" alt="">
+    </div>
+  </div>
 </div>
+
+{% include partes/cta.html %}

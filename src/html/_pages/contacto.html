@@ -40,15 +40,16 @@ function: form
             
             <input type="hidden" name="_subject" value="Contacto desde JRecotecnologia.com ({{ page.title }})" />
             <input type="text" name="_gotcha" style="display:none" />
-            <button id="frm-enviar" type="submit" class="boton-naranja">Enviar mensaje</button>
+            <button id="frm-enviar" type="submit" class="boton naranja">Enviar mensaje</button>
             <span class="error">Por favor llena los campos requeridos.</span>
         </form>
     </div>
     <div class="frm-der-nar">
-        <h2>Oficina central Guadalajara</h2>
+        <h2>Oficinas centrales Guadalajara</h2>
         {{ site.owner.direccion }}
-        {% include partes/telefono tel=site.owner.tel1 %}
-        {% include partes/telefono tel=site.owner.tel2 %}
+        {% for telefono in site.owner.telefonos %}
+        <p>{% include partes/telefono tel=telefono %}</p>
+        {% endfor %}
         {% include partes/e-mail e-mail=site.owner.email %}
     </div>
 </div>

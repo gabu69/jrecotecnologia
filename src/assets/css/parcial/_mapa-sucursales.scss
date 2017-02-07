@@ -39,7 +39,7 @@
 		color: $blanco;
 	}
 	
-	.boton-naranja {
+	.boton {
 		position: absolute;
 		left: 50%;
 		top: calc(20% + 4.5rem);
@@ -57,7 +57,7 @@
 			margin: 0;
 		}
 		
-		.boton-naranja {
+		.boton {
 			position: static;
 			display: inline-block;
 			margin: $spacing-unit 0 0 0;

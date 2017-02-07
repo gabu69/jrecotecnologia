@@ -1,4 +1,4 @@
-export default {
+export const DOMUtil = {
   ready: function(fn) {
     if (document.readyState != 'loading') {
       fn();
@@ -25,4 +25,13 @@ export default {
 
     return func;
   }
-}
+};
+
+export const $class = (className, all = false) => {
+  const selection = document.getElementsByClassName(className);
+  return (all) ? Array.from(selection) : selection[0];
+};
+
+export const $id = (id) => {
+  return document.getElementById(id);
+};

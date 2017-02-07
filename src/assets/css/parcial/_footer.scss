@@ -1,18 +1,118 @@
+$alturaBorde: 0.4rem;
+
 footer {
-    background-color: #242424;
-    overflow: auto;
-    font-size: $small-font-size;
-    text-align: center;
-    
-    .canjealo a {
-        color: $text-color;
-    }
-    
-    .icon {
-        width: 2rem;
-    }
+  background-color: $footer-color1;
+  
+  padding-top: $spacing-unit;
+
+  border-top: $alturaBorde solid #c4268c;
+  position:relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: $alturaBorde;
+    background: linear-gradient(to right, #eb5c95, #c06a9a, #7c6b9e, #74a5d8, #8cccc0, #58ba9e, #90c257, #f2e65e, #fdc94f, #f1a068, #f2907a, #ed6e62, #ea5151);
+    top: -$alturaBorde;
+    left: 0;
+  }
 }
 
-#topsolar\.org {
-    display: none;
+.siteFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-bottom: $spacing-unit;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-unit;
+    line-height: 1;
+    color: #a0acc1;
+  }
+}
+
+.siteFooter__logo {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  
+  max-width: 12rem;
+  min-width: 8rem;
+  margin-right: 2rem;
+}
+.siteFooter__logo__svg {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-bottom: 39.14253%;
+  
+  svg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    fill: #fff;
+  }
+}
+
+.sitefooter__menu {
+  padding-left: 3rem;
+}
+
+.sitefooter__menu, .siteFooter__catalogo {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  
+  min-width: 12rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li:not(:first-child) {
+    margin-top: $spacing-unit / 2;
+  }
+  
+  a {
+    color: $blanco;
+  }
+}
+
+.siteFooter__contacto {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+
+  min-width: 21rem;
+
+  .gdl {
+    display: flex;
+  }
+  .icon {
+    width: 2rem;
+  }
+}
+.siteFooter__contacto__foto {
+  width: 11rem;
+}
+.siteFooter__contacto__datos {
+  margin-left: $spacing-unit;
+
+  p {
+    margin: 0;
+    color: $blanco;
+  }
+}
+
+.siteFooter__copy {
+  background-color: $footer-color2;
+  font-size: $small-font-size;
+  color: $blanco;
 }

@@ -43,3 +43,31 @@ site-header:
     url: /nosotros/
   - title: "Contacto"
     url: /contacto/
+
+site-footer:
+  - title: "Inicio"
+    url: /
+  - title: "Hipoteca Verde"
+    url: /hipoteca-verde/
+  - title: "Canjea tu vale"
+    url: /canjea-tu-vale/
+  - title: "Ecotecnología"
+    url: /ecotecnologia/
+  - title: "Sucursales"
+    url: /sucursales/
+  - title: "Franquicias"
+    url: /franquicias/
+  - title: "Nosotros"
+    url: /nosotros/
+  - title: "Contacto"
+    url: /contacto/
+
+catalogo-footer:
+  - title: "Energía solar"
+    url: /ecotecnologias/energia-solar/
+  - title: "Línea blanca"
+    url: /ecotecnologias/linea-blanca/
+  - title: "Calentadores solares"
+    url: /ecotecnologias/calentadores-solares/
+  - title: "Aire acondicionado"
+    url: /ecotecnologias/aire-acondicionado/

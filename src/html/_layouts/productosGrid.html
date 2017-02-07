@@ -2,100 +2,110 @@
 layout: con-cabeza
 ---
 
+{% include partes/productosHeader.html %}
+
 {{ content }}
 
 {% assign cantTipoProducto = site.data.productos[page.slug].size %}
 
-<div class="wrapper" style="overflow: initial;">
-  <div class="productos">
-
-    {% if cantTipoProducto > 1 %}
-
-      <div id="filtro" class="productosFiltro">
-        <button type="button" data-filter="all">Todos</button>
+<div class="productosGrid">
+  <div class="wrapper">
+    <div class="productos">
+  
+      {% if cantTipoProducto > 1 %}
+  
+        <div id="filtro" class="productosFiltro">
+          <button type="button" data-filter="all">Todos</button>
+    
+          {% for tipo in site.data.productos[page.slug] %}
+    
+            <button type="button" data-filter=".{{ tipo[0] }}">{{ tipo[0] | capitalize | replace: "-", " " }}</button>
+    
+          {% endfor %}
+    
+        </div>
+  
+      {% endif %}
+  
+      <div class="productosLista">
   
         {% for tipo in site.data.productos[page.slug] %}
   
-          <button type="button" data-filter=".{{ tipo[0] }}">{{ tipo[0] | capitalize | replace: "-", " " }}</button>
+          {% for producto in tipo[1] %}
+            {% if cantTipoProducto > 1 %}
+              {% capture ImagePath %}/img/productos/{{ page.slug }}/{{ tipo[0] }}/{% endcapture %}
+            {% else %}
+              {% capture ImagePath %}/img/productos/{{ page.slug }}/{% endcapture %}
+            {% endif %}
+            {% capture myImagePath %}{{ ImagePath }}lqip-{{ producto.modelo }}{% endcapture %}
+            {% assign itemString = '' %}
+            {% for myImage in site.static_files %}
+              {% if myImage.path contains myImagePath %}
+                {% capture itemString %}{{ itemString }}{{ myImage.basename | remove: "lqip-" }}|||{% endcapture %}
+              {% endif %}
+            {% endfor %}
+            {% assign items = itemString | split: "|||" %}
   
-        {% endfor %}
+            <div class="producto {{ tipo[0] }}">
+              <div class="productoInner">
+  
+                {% if items.size > 1 %}
+  
+                <figure class="main-carousel">
+  
+                  {% for item in items %}
+  
+                    <img src="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg"
+                      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                      data-sizes="auto"
+                      data-srcset="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg 300w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-200.jpg 200w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-400.jpg 400w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-600.jpg 600w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-800.jpg 800w"
+                      alt="{{ producto.marca }} {{ producto.modelo }}"
+                      class="carousel-cell lazyload" />
+  
+                  {% endfor %}
+  
+                {% else %}
+  
+                <figure class="intrinsic intrinsic--square">
+  
+                  {% for item in items %}
+  
+                    <img src="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg"
+                      srcset="{{ site.url }}/assets{{ myImagePath }}.jpg"
+                      data-sizes="auto"
+                      data-srcset="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg 300w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-200.jpg 200w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-400.jpg 400w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-600.jpg 600w,
+                        {{ site.url }}/assets{{ ImagePath }}{{ item }}-800.jpg 800w"
+                      alt="{{ producto.marca }} {{ producto.modelo }}"
+                      class="intrinsic-item lazyload blur-up" />
+  
+                  {% endfor %}
+  
+                {% endif %}
+  
+                </figure>
+                <div class="productoInner__nombre">
+                  <h2>{{ producto.marca }}<br>{{ producto.modelo }}</h2>
+                </div>
+                <div class="productoInner__descripcion">
+                  <p>{{ producto.caracteristicas }}</p>
+                </div>
+              </div>
+            </div>
+  
+          {% endfor %}
+  
+      {% endfor %}
   
       </div>
-
-    {% endif %}
-
-    <div class="productosLista">
-
-      {% for tipo in site.data.productos[page.slug] %}
-
-        {% for producto in tipo[1] %}
-          {% if cantTipoProducto > 1 %}
-            {% capture ImagePath %}/img/productos/{{ page.slug }}/{{ tipo[0] }}/{% endcapture %}
-          {% else %}
-            {% capture ImagePath %}/img/productos/{{ page.slug }}/{% endcapture %}
-          {% endif %}
-          {% capture myImagePath %}{{ ImagePath }}lqip-{{ producto.modelo }}{% endcapture %}
-          {% assign itemString = '' %}
-          {% for myImage in site.static_files %}
-            {% if myImage.path contains myImagePath %}
-              {% capture itemString %}{{ itemString }}{{ myImage.basename | remove: "lqip-" }}|||{% endcapture %}
-            {% endif %}
-          {% endfor %}
-          {% assign items = itemString | split: "|||" %}
-
-          <div class="producto {{ tipo[0] }}">
-            <div class="productoInner">
-
-              {% if items.size > 1 %}
-
-              <figure class="main-carousel">
-
-                {% for item in items %}
-
-                  <img src="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-sizes="auto"
-                    data-srcset="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg 300w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-200.jpg 200w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-400.jpg 400w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-600.jpg 600w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-800.jpg 800w"
-                    alt="{{ producto.marca }} {{ producto.modelo }}"
-                    class="carousel-cell lazyload" />
-
-                {% endfor %}
-
-              {% else %}
-
-              <figure class="intrinsic intrinsic--square">
-
-                {% for item in items %}
-
-                  <img src="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg"
-                    srcset="{{ site.url }}/assets{{ myImagePath }}.jpg"
-                    data-sizes="auto"
-                    data-srcset="{{ site.url }}/assets{{ ImagePath }}{{ item }}-300.jpg 300w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-200.jpg 200w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-400.jpg 400w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-600.jpg 600w,
-                      {{ site.url }}/assets{{ ImagePath }}{{ item }}-800.jpg 800w"
-                    alt="{{ producto.marca }} {{ producto.modelo }}"
-                    class="intrinsic-item lazyload blur-up" />
-
-                {% endfor %}
-
-              {% endif %}
-
-              </figure>
-              <h2>{{ producto.marca }} {{ producto.modelo }}</h2>
-              <span>{{ producto.caracteristicas }}</span>
-            </div>
-          </div>
-
-        {% endfor %}
-
-    {% endfor %}
-
     </div>
   </div>
 </div>
+
+{% include partes/cta.html %}

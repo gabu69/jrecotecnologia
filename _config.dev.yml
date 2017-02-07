@@ -1,9 +1,3 @@
 url: "https://jr-ecotecnologia-joseanu.c9users.io"
 owner:
   email: webmaster@jrecotecnologia.com
-
-assets:
-  compress:
-    css: false
-    js: false
-  digest: false
