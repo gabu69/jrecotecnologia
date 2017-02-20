@@ -17,7 +17,7 @@
     align-items: center;
     align-content: center;
     
-    @include media-query($on-palm) {
+    @include media-query($on-laptop) {
         display: none;
     }
 }

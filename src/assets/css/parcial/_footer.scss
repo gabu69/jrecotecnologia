@@ -1,6 +1,8 @@
 $alturaBorde: 0.4rem;
 
 footer {
+  font-size: $small-font-size;
+  
   background-color: $footer-color1;
   
   padding-top: $spacing-unit;
@@ -27,7 +29,7 @@ footer {
 
   h2 {
     margin-top: 0;
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit / 2;
     line-height: 1;
     color: #a0acc1;
   }
@@ -40,7 +42,7 @@ footer {
   
   max-width: 12rem;
   min-width: 8rem;
-  margin-right: 2rem;
+  margin-right: 5rem;
 }
 .siteFooter__logo__svg {
   position: relative;
@@ -60,7 +62,7 @@ footer {
 }
 
 .sitefooter__menu {
-  padding-left: 3rem;
+  
 }
 
 .sitefooter__menu, .siteFooter__catalogo {
@@ -77,7 +79,7 @@ footer {
   }
   
   li:not(:first-child) {
-    margin-top: $spacing-unit / 2;
+    margin-top: $spacing-unit / 4;
   }
   
   a {

@@ -36,3 +36,60 @@ http://www.revoteck.com/page/cotiza
 
 
 Hay que hacer que webappmanifest.json sea dinámico
+
+
+
+
+
+
+
+
+
+https://philipwalton.com/articles/the-google-analytics-setup-i-use-on-every-site-i-build/
+https://github.com/philipwalton/analyticsjs-boilerplate
+
+<script>addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)});</script>
+
+export const init = () => {
+  // ...
+  trackErrors();
+  // ...
+};
+
+export const trackError = (error, fieldsObj = {}) => {
+  ga('send', 'event', Object.assign({
+    eventCategory: 'Script',
+    eventAction: 'error',
+    eventLabel: (error && error.stack) || '(not set)',
+    nonInteraction: true,
+  }, fieldsObj));
+};
+
+const trackErrors = () => {
+  const loadErrorEvents = window.__e && window.__e.q || [];
+  const fieldsObj = {eventAction: 'uncaught error'};
+
+  // Replay any stored load error events.
+  for (let event of loadErrorEvents) {
+    trackError(event.error, fieldsObj);
+  }
+
+  // Add a new listener to track event immediately.
+  window.addEventListener('error', (event) => {
+    trackError(event.error, fieldsObj);
+  });
+};
+
+
+
+
+const dimensions = {
+  CLIENT_ID: 'dimension1',
+};
+
+
+ga((tracker) => {
+  var clientId = tracker.get('clientId');
+  tracker.set(dimensions.CLIENT_ID, clientId);
+});
+

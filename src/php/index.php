@@ -4,26 +4,40 @@ require '../phplib/autoload.php';
 $app = new \Slim\Slim();
 
 function enviarCorreo($datos) {
-  
-  $myFile = $_SERVER['DOCUMENT_ROOT'].'/../_archivo.txt';
-  $fh = fopen($myFile, 'r');
-  $passw = fgets($fh);
-  fclose($fh);
-  
-  $mailer = new PHPMailer;
-  $mailer->isSMTP();
-  $mailer->Host = 'rmx11.dizinc.com';
-  $mailer->SMTPAuth = true;
-  $mailer->Username = 'webmaster@jrecotecnologia.com';
-  $mailer->Password = $passw;
-  $mailer->SMTPSecure = 'ssl';
-  $mailer->Port = 465;
-  $mailer->isHTML(true);
-  
+	
+	$myFile = $_SERVER['DOCUMENT_ROOT'].'/../_archivo.txt';
+	$fh = fopen($myFile, 'r');
+	$passw = fgets($fh);
+	fclose($fh);
+	
+	$mailer = new PHPMailer;
+	$mailer->isSMTP();
+	$mailer->Host = 'rmx11.dizinc.com';
+	$mailer->SMTPAuth = true;
+	$mailer->Username = 'webmaster@jrecotecnologia.com';
+	$mailer->Password = $passw;
+	$mailer->SMTPSecure = 'ssl';
+	$mailer->Port = 465;
+	$mailer->isHTML(true);
+	
 	$cc = 'contacto@jrecotecnologia.com';
 	$nombre = $datos['nombre'];
 	$reply = $datos['correo'];
 	$titulo = $datos['_subject'];
+	$sheet = '';
+
+	if ( !empty($datos['recibo']) ) {
+		list($type, $data) = explode(';', $datos['recibo']);
+		list(,$type) = explode(':',$type);
+		list(,$extension) = explode('/',$type);
+		list(, $data) = explode(',', $data);
+		$attachmentData = base64_decode( $data );
+		$mailer->AddStringAttachment($attachmentData, "recibo." . $extension, 'base64', $type);
+		unset($datos['recibo']);
+
+		$sheet = 'nomandar';
+	}
+
 	$body = '';
 	$parametros = '';
 	foreach ($datos as $key => $value) {
@@ -42,7 +56,9 @@ function enviarCorreo($datos) {
 		}
 	}
 	$parametros = ltrim($parametros, '&');
-	$resp = guardarSheet($parametros);
+	if ($sheet == '') {
+		$resp = guardarSheet($parametros);
+	}
 
 	$mailer->clearAllRecipients();
 	$mailer->setFrom('webmaster@jrecotecnologia.com', 'Sitio Web JR Ecotecnologia');
@@ -70,8 +86,8 @@ function guardarSheet($parametros) {
 	$curl = curl_init();
 	// Set some options - we are passing in a useragent too here
 	curl_setopt_array($curl, array(
-	    CURLOPT_RETURNTRANSFER => 1,
-	    CURLOPT_URL => $url
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $url
 	));
 	// Send the request & save response to $resp
 	$resp = curl_exec($curl);
@@ -83,82 +99,100 @@ function guardarSheet($parametros) {
 
 $app->post('/contacto', function () use ($app) {
 
-  $request = $app->request();
-  $post = $app->request->post();
+	$request = $app->request();
+	$post = $app->request->post();
 
-  $respuesta = array();
-  $errores = array();
+	$respuesta = array();
+	$errores = array();
 
-  if ( empty($post['_gotcha']) ) {
-    if ( !isset( $post['correo'] ) || empty( $post['correo'] ) || !filter_var( trim( $post['correo'] ), FILTER_VALIDATE_EMAIL ) ) 
-    {
-      $errores['correo'] = 'Es necesario el correo';
-    }
-    elseif ( !isset( $post['nombre'] ) || empty( $post['nombre'] ) )
-    {
-      $errores['nombre'] = 'Es necesario el nombre';
-    }
-    else
-    {
-      if ( $_SERVER['HTTP_HOST'] != 'jr-ecotecnologia-joseanu.c9users.io' ) {
-        $correo = enviarCorreo($post);
-        if ( $correo == 'enviado' ) {
-          $respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
-        } else {
-          $errores['correo'] = $correo;
-        }
-      }
-      else
-      {
-        $respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
-      }
-    }
-    if ( count($errores) > 0 ) {
-      $respuesta['errores'] = $errores;
-    }
-    $app->response->write( json_encode($respuesta) );
-  }
-  else
-  {
-    $app->response->write( 'mal' );
-  }
+	if ( empty($post['_gotcha']) ) {
+		if ( !isset( $post['correo'] ) || empty( $post['correo'] ) || !filter_var( trim( $post['correo'] ), FILTER_VALIDATE_EMAIL ) ) 
+		{
+			$errores['correo'] = 'Es necesario el correo';
+		}
+		elseif ( !isset( $post['nombre'] ) || empty( $post['nombre'] ) )
+		{
+			$errores['nombre'] = 'Es necesario el nombre';
+		}
+		else
+		{
+			if ( $_SERVER['HTTP_HOST'] != 'jr-ecotecnologia-joseanu.c9users.io' ) {
+				$correo = enviarCorreo($post);
+				if ( $correo == 'enviado' ) {
+					$respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
+				} else {
+					$errores['correo'] = $correo;
+				}
+			}
+			else
+			{
+				$respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
+			}
+		}
+
+		if ( count($errores) > 0 ) {
+			$respuesta['errores'] = $errores;
+		}
+
+		$app->response->write( json_encode($respuesta) );
+	}
+	else
+	{
+		$app->response->write( 'mal' );
+	}
 });
 
 $app->post('/cotizar', function () use ($app) {
 
-  $request = $app->request->getBody();
-  $post = json_decode($request);
-  
-  $headers = $app->request->headers;
+	$request = $app->request->getBody();
+	$post = json_decode($request);
+	
+	$headers = $app->request->headers;
 
-  $respuesta = array();
-  $errores = array();
-  
-  if ( empty($post->gotchaz) ) {
-    if ( empty( $post->correo ) || !filter_var( trim( $post->correo ), FILTER_VALIDATE_EMAIL ) ) 
-    {
-      $errores['correo'] = 'Es necesario el correo';
-    }
-    if ( empty( $post->nombre ) )
-    {
-      $errores['nombre'] = 'Es necesario el nombre';
-    }
+	$respuesta = array();
+	$errores = array();
+	
+	if ( empty($post->_gotchaz) ) {
+		if ( empty( $post->correo ) || !filter_var( trim( $post->correo ), FILTER_VALIDATE_EMAIL ) ) 
+		{
+			$errores['correo'] = 'Es necesario el correo';
+		}
+		elseif ( empty( $post->nombre ) )
+		{
+			$errores['nombre'] = 'Es necesario el nombre';
+		}
+		else
+		{
+			if ( $_SERVER['HTTP_HOST'] != 'jr-ecotecnologia-joseanu.c9users.io' ) {
+				$arr = (array)$post;
+				$arr['_subject'] = 'Solicitud para Cotizar Sistema Fotovoltaico';
+				unset($arr['errores']);
+				unset($arr['gotchaz']);
+				$correo = enviarCorreo($arr);
 
-    if ( count($errores) > 0 ) {
-      $app->response->setStatus(422);
-      $respuesta = $errores;
-    }
-    else
-    {
-      $respuesta['ok'] = 'Gracias.';
-    }
-    $app->response->write( json_encode($respuesta) );
-    $app->response->write( json_encode($headers) );
-  }
-  else
-  {
-    $app->response->write( 'mal' );
-  }
+				if ( $correo == 'enviado' ) {
+					$respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
+				} else {
+					$errores['correo'] = $correo;
+				}
+			}
+			else
+			{
+				$respuesta['ok'] = 'Gracias por contactarnos. Recibimos tus datos y en breve nos comunicaremos.';
+			}
+		}
+
+		if ( count($errores) > 0 ) {
+			$app->response->setStatus(422);
+			$respuesta = $errores;
+		}
+
+		$app->response->write( json_encode($respuesta) );
+	}
+	else
+	{
+		$app->response->write( 'mal' );
+	}
 });
 
 $app->run();

@@ -45,8 +45,6 @@ site-header:
     url: /contacto/
 
 site-footer:
-  - title: "Inicio"
-    url: /
   - title: "Hipoteca Verde"
     url: /hipoteca-verde/
   - title: "Canjea tu vale"

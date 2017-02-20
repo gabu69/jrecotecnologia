@@ -7,7 +7,7 @@ import linkeaTelefonos from './telefonos';
 import Functions from './Functions/index';
 
 require('es6-promise').polyfill();
-
+console.log('--');
 //import startBarba from './barba/index';
 //startBarba();
 

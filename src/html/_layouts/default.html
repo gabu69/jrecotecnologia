@@ -26,7 +26,7 @@ layout: compress
 
   <body{% if body_class %} class="{{ body_class }}"{% endif %}{% if page.function %} data-function="{{ page.function }}"{% endif %}>
     {% if jekyll.environment == "production" %}
-      {% include partes/gtm.html %}
+      {% include partes/gtm.html part='body' %}
     {% endif %}
 
     {% include header.html %}

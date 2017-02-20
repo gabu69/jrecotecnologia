@@ -20,9 +20,9 @@ export default function() {
 
   let filtro = $id('filtro');
   if (filtro) {
-    require.ensure([], () => {
+    require.ensure([], function(require) {
       var mixitup = require('mixitup');
-      const mixer = mixitup('.productos', {
+      mixitup('.productos', {
         selectors: {
           target: '.producto'
         },

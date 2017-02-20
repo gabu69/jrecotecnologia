@@ -41,8 +41,6 @@
   
   <link rel="canonical" href="{{ canonical_url }}">
   
-  {% comment %} ¡Implementar sitemap! <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}/sitemap.xml">{% endcomment %}
-  
   {% if site.owner.google.verify %}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{% endif %}
   {% if site.owner.bing.verify %}<meta name="msvalidate.01" content="{{ site.owner.bing.verify }}">{% endif %}
   {% if site.owner.alexa.verify %}<meta name="alexaVerifyID" content="{{ site.owner.alexa.verify }}">{% endif %}
@@ -84,5 +82,7 @@
   <meta name="theme-color" content="#44ac64">
   
   {% include partes/dataLayer %}
-  
+  {% if jekyll.environment == "production" %}
+    {% include partes/gtm.html part='head' %}
+  {% endif %}
 </head>

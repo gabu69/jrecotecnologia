@@ -1,60 +1,74 @@
-<form method="post" action="/server/cotizar" @submit.prevent="onSubmit" @keydown="delete errores[$event.target.name]">
-  <fieldset>
-		<label for="nombre">Nombre</label>
-    <input type="text" name="nombre" id="nombre" v-model="nombre" class="input" tabindex="1" />
-    <span v-if="errores.nombre" v-text="errores.nombre"></span>
+<div class="formCotiza">
+  <form method="post" action="/server/cotizar" @submit.prevent="onSubmit" @keydown="delete errores[$event.target.name]">
+    <fieldset>
+      <label>Quiero un sistema fotovoltaico para</label>
+      <div class="segmented-control">
+        <input class="segmented-control__input" type="radio" value="casa" id="option-1" v-model="tipo" />
+        <label class="segmented-control__label" for="option-1">Casa</label>
+        <input class="segmented-control__input" type="radio" value="negocio" id="option-2" v-model="tipo" />
+        <label class="segmented-control__label" for="option-2">Negocio</label>
+      </div>
+    </fieldset>
 
-    <label for="correo">Correo</label>
-    <input type="email" name="correo" id="correo" v-model="correo" class="input" tabindex="2" />
-    <span v-if="errores.correo" v-text="errores.correo"></span>
-
-    <label for="telefono">Teléfono</label>
-    <input type="tel" name="telefono" id="telefono" pattern="[0-9]*" v-model="telefono" class="input" tabindex="3" />
-
-    <label for="ciudad">Ciudad</label>
-    <input type="text" name="ciudad" id="ciudad" v-model="ciudad" class="input" tabindex="4" />
-
-    <label for="estado">Estado</label>
-    <select name="estado" id="estado" v-model="estado" class="select" tabindex="5">
-        <option disabled value=""> -- selecciona un estado -- </option>
-        <option value="Aguascalientes">Aguascalientes</option><option value="Baja California">Baja California</option><option value="Baja California Sur">Baja California Sur</option><option value="Campeche">Campeche</option><option value="Coahuila">Coahuila</option><option value="Colima">Colima</option><option value="Chiapas">Chiapas</option><option value="Chihuahua">Chihuahua</option><option value="Ciudad de México">Ciudad de México</option><option value="Durango">Durango</option><option value="Guanajuato">Guanajuato</option><option value="Guerrero">Guerrero</option><option value="Hidalgo">Hidalgo</option><option value="Jalisco">Jalisco</option><option value="México">México</option><option value="Michoacán">Michoacán</option><option value="Morelos">Morelos</option><option value="Nayarit">Nayarit</option><option value="Nuevo León">Nuevo León</option><option value="Oaxaca">Oaxaca</option><option value="Puebla">Puebla</option><option value="Querétaro">Querétaro</option><option value="Quintana Roo">Quintana Roo</option><option value="San Luis Potosí">San Luis Potosí</option><option value="Sinaloa">Sinaloa</option><option value="Sonora">Sonora</option><option value="Tabasco">Tabasco</option><option value="Tamaulipas">Tamaulipas</option><option value="Tlaxcala">Tlaxcala</option><option value="Veracruz">Veracruz</option><option value="Yucatán">Yucatán</option><option value="Zacatecas">Zacatecas</option>
-    </select>
-	</fieldset>
-
-	<fieldset>
-    <label for="consumo">Consumo promedio bimestral</label>
-    <input type="number" name="consumo" id="consumo" pattern="[0-9]*" v-model="consumo" class="input" tabindex="6" />
-
-    <label for="usuario_cfe">Nombre de usuario CFE</label>
-    <input type="text" name="usuario_cfe" id="usuario_cfe" v-model="usuario_cfe" class="input" tabindex="7" />
-
-    <label for="servicio_cfe">Número de servicio CFE</label>
-    <input type="text" name="servicio_cfe" id="servicio_cfe" v-model="servicio_cfe" class="input" tabindex="8" />
-	</fieldset>
-
-	<fieldset>
-    <div v-if="!recibo">
-		  <input type="file" name="recibo" id="recibo" accept="image/*" @change="onFileChange" class="inputfile" tabindex="9">
-		  <label for="recibo">
-		    <svg width="32" height="32" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M896 672q119 0 203.5 84.5t84.5 203.5-84.5 203.5-203.5 84.5-203.5-84.5-84.5-203.5 84.5-203.5 203.5-84.5zm704-416q106 0 181 75t75 181v896q0 106-75 181t-181 75h-1408q-106 0-181-75t-75-181v-896q0-106 75-181t181-75h224l51-136q19-49 69.5-84.5t103.5-35.5h512q53 0 103.5 35.5t69.5 84.5l51 136h224zm-704 1152q185 0 316.5-131.5t131.5-316.5-131.5-316.5-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5z"/></svg>
-		    Envíanos tu recibo de luz
-		  </label>
-		</div>
-		<div class="recibo" v-else>
-      <img :src="recibo" />
-      <button @click="removeImage"v-if="!cargandoRecibo">cambiar imágen</button>
-    </div>
-	</fieldset>
-
-	<fieldset>
-    <label for="mensaje">Comentarios adicionales:</label>
-    <textarea id="mensaje" name="mensaje" spellcheck="true" rows="5" cols="50" v-model="mensaje" class="input" tabindex="10"></textarea>
-
-    <input type="checkbox" name="autorizo" id="autorizo" v-model="autorizo" class="control__input" tabindex="11"><label for="autorizo" class="control__label">Autorizo a JR Ecotecnología para que revise mi historial de consumo eléctrico.</label>
-
-	  <input type="text" name="_gotchaz" style="display:none" v-model="gotchaz" />
-
-		<button tabindex="12">Enviar..</button>
-	</fieldset>
-
-</form>
+    <fieldset>
+  		<label for="nombre">{{ labelNombre }}</label>
+      <input type="text" name="nombre" id="nombre" v-model="nombre" class="input" />
+      <span v-if="errores.nombre" v-text="errores.nombre"></span>
+  
+      <label for="correo">Correo</label>
+      <input type="email" name="correo" id="correo" v-model="correo" class="input" />
+      <span v-if="errores.correo" v-text="errores.correo"></span>
+  
+      <label for="telefono">Teléfono</label>
+      <input type="tel" name="telefono" id="telefono" pattern="[0-9]*" v-model="telefono" class="input" />
+  
+      <label for="ciudad">Ciudad</label>
+      <input type="text" name="ciudad" id="ciudad" v-model="ciudad" class="input" />
+  
+      <label for="estado">Estado</label>
+      <select name="estado" id="estado" v-model="estado" class="select" >
+          <option disabled value=""> -- selecciona un estado -- </option>
+          <option value="Aguascalientes">Aguascalientes</option><option value="Baja California">Baja California</option><option value="Baja California Sur">Baja California Sur</option><option value="Campeche">Campeche</option><option value="Coahuila">Coahuila</option><option value="Colima">Colima</option><option value="Chiapas">Chiapas</option><option value="Chihuahua">Chihuahua</option><option value="Ciudad de México">Ciudad de México</option><option value="Durango">Durango</option><option value="Guanajuato">Guanajuato</option><option value="Guerrero">Guerrero</option><option value="Hidalgo">Hidalgo</option><option value="Jalisco">Jalisco</option><option value="México">México</option><option value="Michoacán">Michoacán</option><option value="Morelos">Morelos</option><option value="Nayarit">Nayarit</option><option value="Nuevo León">Nuevo León</option><option value="Oaxaca">Oaxaca</option><option value="Puebla">Puebla</option><option value="Querétaro">Querétaro</option><option value="Quintana Roo">Quintana Roo</option><option value="San Luis Potosí">San Luis Potosí</option><option value="Sinaloa">Sinaloa</option><option value="Sonora">Sonora</option><option value="Tabasco">Tabasco</option><option value="Tamaulipas">Tamaulipas</option><option value="Tlaxcala">Tlaxcala</option><option value="Veracruz">Veracruz</option><option value="Yucatán">Yucatán</option><option value="Zacatecas">Zacatecas</option>
+      </select>
+  	</fieldset>
+  
+  	<fieldset>
+      <label for="consumo">Consumo promedio bimestral</label>
+      <input type="number" name="consumo" id="consumo" pattern="[0-9]*" v-model="consumo" class="input" />
+  
+      <label for="usuario_cfe">Nombre de usuario CFE</label>
+      <input type="text" name="usuario_cfe" id="usuario_cfe" v-model="usuario_cfe" class="input" />
+  
+      <label for="servicio_cfe">Número de servicio CFE</label>
+      <input type="text" name="servicio_cfe" id="servicio_cfe" v-model="servicio_cfe" class="input" />
+  	</fieldset>
+  
+  	<fieldset>
+      <div v-if="!recibo">
+  		  <input type="file" name="recibo" id="recibo" accept="image/*" @change="onFileChange" class="inputfile" />
+  		  <label for="recibo" class="boton verde">
+  		    <svg width="32" height="32" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M896 672q119 0 203.5 84.5t84.5 203.5-84.5 203.5-203.5 84.5-203.5-84.5-84.5-203.5 84.5-203.5 203.5-84.5zm704-416q106 0 181 75t75 181v896q0 106-75 181t-181 75h-1408q-106 0-181-75t-75-181v-896q0-106 75-181t181-75h224l51-136q19-49 69.5-84.5t103.5-35.5h512q53 0 103.5 35.5t69.5 84.5l51 136h224zm-704 1152q185 0 316.5-131.5t131.5-316.5-131.5-316.5-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5z"/></svg>
+  		    Envíanos tu recibo de luz
+  		  </label>
+  		</div>
+  		<div class="recibo" v-else>
+        <img :src="recibo" />
+        <button @click="removeImage"v-if="!cargandoRecibo">cambiar imágen</button>
+      </div>
+  	</fieldset>
+  
+  	<fieldset>
+      <label for="mensaje">Comentarios adicionales:</label>
+      <textarea id="mensaje" name="mensaje" spellcheck="true" rows="5" cols="50" v-model="mensaje" class="input">
+        
+      </textarea>
+  
+      <input type="checkbox" name="autorizo" id="autorizo" v-model="autorizo" class="control__input" />
+      <label for="autorizo" class="control__label">Autorizo a JR Ecotecnología para que revise mi historial de consumo eléctrico.</label>
+  
+  	  <input type="text" name="_gotchaz" style="display:none" v-model="gotchaz" />
+  
+  		<button class="boton naranja">Solicitar cotización </button>
+  	</fieldset>
+  </form>
+</div>

@@ -2,7 +2,7 @@
   'use strict';
   
   //https://www.filamentgroup.com/sw.js
-  const version = 'jr0.11saturn::';
+  const version = 'jr0.14pluton::';
   const ignorar = /(google-analytics|googletagmanager|facebook|tawk)/;
   const staticCacheName = version + 'static';
   const pagesCacheName = version + 'pages';

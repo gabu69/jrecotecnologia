@@ -6,6 +6,7 @@ export default {
   name: 'App',
   data: function() {
     return {
+      tipo: 'casa',
       nombre: '',
       correo: '',
       telefono: '',
@@ -22,6 +23,9 @@ export default {
     };
   },
   computed: {
+    labelNombre() {
+      return this.tipo == 'casa' ? 'Nombre' : 'Empresa';
+    },
     doUpload() {
       //return (window.File && window.FileReader && window.FormData);
       return (window.File && window.FileReader && window.FormData && isMobile.any);
@@ -75,7 +79,7 @@ export default {
     		alert('Error leyendo imágen.');
     		vm.recibo = '';
     	};
-      
+      console.log('--');
       reader.readAsDataURL(file);
 
     },
